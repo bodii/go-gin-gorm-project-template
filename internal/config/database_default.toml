@@ -1,0 +1,11 @@
+[[mysql]]
+driver_name = "mysql"
+host = "127.0.0.1"
+port = 3306
+user = "root"
+password = ""
+database = "dbname"
+charset = "utf8mb4"
+max_line_nums = 2
+show_sql_log = true
+log_level = 4 # silent: 1, error: 2, warn: 3, info: 4
