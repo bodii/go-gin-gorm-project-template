@@ -1,0 +1,15 @@
+[app_log]
+output_file = "logs/app.log"
+coutput_console = true
+# 日志级别
+# level = "Trace"　＃ 追踪
+# level = "Debug"　＃ 调试
+# level = "Info"　＃ 信息
+# level = "Warn"　＃ 警告
+# level = "Error"　＃ 错误
+# level = "Fatal"　＃ 严重
+level = "info"
+# 日志格式
+# format = "json"
+# format = "text"
+format = "json"

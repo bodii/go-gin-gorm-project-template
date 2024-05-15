@@ -20,7 +20,7 @@ import (
 type userController struct {
 	service service.UserService
 	Redis   *types.RedisDBT
-	Log     *slog.Logger
+	Log     *types.AppLogT
 }
 
 // NewUserController : userController
@@ -39,7 +39,7 @@ func (u *userController) Login(c *gin.Context) {
 		return
 	}
 	dbUser, err := u.service.UserLogin(user)
-	log.Printf("user info: %#v", dbUser)
+	u.Log.Info("user info: %#v", dbUser)
 	if err != nil {
 		utils.ErrorJSON(c, http.StatusBadRequest, err.Error())
 		return

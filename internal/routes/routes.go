@@ -12,8 +12,8 @@ import (
 func RegisterRoutes(router *gin.Engine) http.Handler {
 
 	// example
-	// indexContro := controller.NewIndexController()
-	// router.GET("/", indexContro.HelloWorld)
+	// exampleContro := controller.NewExampleController()
+	// router.GET("/", exampleContro.HelloWorld)
 
 	// 注册api路由组及其子路由
 	api.RegisterRoutes(router.Group("/api"))

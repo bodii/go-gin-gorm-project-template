@@ -112,6 +112,6 @@ func GetMysqlAllDBNames() []string {
 	return all
 }
 
-func GetMysqlAllDB() map[string]*types.RedisDBT {
-	return redisDBs
+func GetMysqlAllDB() map[string]*types.MysqlDBT {
+	return mysqlDBs
 }

@@ -15,23 +15,23 @@ import (
 type exampleController struct {
 	DB    *types.MysqlDBT
 	Redis *types.RedisDBT
-	Log   *slog.Logger
+	Log   *types.AppLogT
 }
 
 func NewExampleController() *exampleController {
 	// log config
-	logger := bootstrap.Log
+	logger := bootstrap.AppLog
 
 	// db config in 'internal/config/dabasese.toml' file on [[msyql]]
 	db, err := bootstrap.GetMysqlDB("dbname")
 	if err != nil {
-		logger.Error(err.Error())
+		logger.Fatal(err.Error())
 	}
 
 	// redis config in 'internal/config/redis.toml' file on [[redis-server]]
 	redis, err := bootstrap.GetRedis("server1")
 	if err != nil {
-		logger.Error(err.Error())
+		logger.Fatal(err.Error())
 	}
 
 	return &exampleController{
@@ -46,6 +46,11 @@ func (example *exampleController) HelloWorld(c *gin.Context) {
 	if c.ClientIP() != c.RemoteIP() {
 		c.JSON(http.StatusNotFound, nil)
 	}
+
+	e.Log.Info("Hello World")
+	e.Log.Error("Hello World")
+	// e.Log.Fatal("Hello World")
+	e.Log.Warn("Hello World")
 
 	resp := make(map[string]string)
 	resp["message"] = "Hello World"
