@@ -1,5 +1,5 @@
 [app_log]
-output_file = "logs/app.log"
+output_file = "handler.log"
 coutput_console = true
 # 日志级别
 # level = "Trace"　＃ 追踪

@@ -38,6 +38,7 @@ type UserLogin struct {
 type UserLoginResponse struct {
 	Userid    int64   `gorm:"column:userid" json:"userid" form:"userid"`
 	Nickname  string  `gorm:"column:nickname" json:"nickname" form:"nickname"`
+	Token     string  `json:"token" form:"token"` // jwt token
 }
 
 // UserRegister -> Request Binding for User Register

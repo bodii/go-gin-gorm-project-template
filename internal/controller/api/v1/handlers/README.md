@@ -45,6 +45,10 @@ func (u *userController) Login(c *gin.Context) {
 		return
 	}
 
+	// jwt generale token
+	jwtService := utils.NewJwtGeneraleService()
+	dbUser.Token = jwtService.GenerateToken(dbUser.Userid)
+
 	utils.OkJSON(c, dbUser)
 }
 ```

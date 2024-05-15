@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path"
 	"runtime"
 	"time"
 )
@@ -75,9 +76,10 @@ func NewAppLog(level string, outputFile string, outputConsole bool, format strin
 	}
 }
 
-func setOutput(filePath string, outputConsole bool) (io.Writer, bool) {
-	if filePath != "" {
-		file, err := os.OpenFile(filePath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0666)
+func setOutput(filename string, outputConsole bool) (io.Writer, bool) {
+	if filename != "" {
+		logFilePath := path.Join("logs", filename)
+		file, err := os.OpenFile(logFilePath, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0666)
 		if err != nil {
 			log.Fatal(err)
 			return nil, false
