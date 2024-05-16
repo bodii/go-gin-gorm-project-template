@@ -3,6 +3,7 @@ package utils
 import (
 	"crypto/md5"
 	"encoding/hex"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -89,4 +90,16 @@ func GenerateToken(data string) string {
 	nowStr, _ := time.Parse("2006010215", time.Now().String())
 
 	return MD5ToUpper(data + nowStr.String())
+}
+
+// GetEnvSecretValue get secret key
+// return:
+//   - [string]: the secret value in .env file or default "secret"
+func GetEnvSecretValue() string {
+	secret := os.Getenv("secret")
+	if secret == "" {
+		secret = "secret"
+	}
+
+	return secret
 }

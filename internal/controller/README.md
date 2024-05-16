@@ -6,6 +6,7 @@ package controller
 import (
 	"template-project-name/internal/bootstrap"
 	"template-project-name/internal/types"
+	"template-project-name/internal/utils"
 	"log/slog"
 	"net/http"
 
@@ -54,6 +55,15 @@ func (example *exampleController) HelloWorld(c *gin.Context) {
 
 	resp := make(map[string]string)
 	resp["message"] = "Hello World"
+
+	// 将api公共参数写入到响应体
+	apiPublicParams := utils.GetApiPublicParamsAllMap(c)
+	for k, v := range apiPublicParams {
+		resp[k] = v
+	}
+
+	// 获取api公共参数的userid
+	// userid := utils.GetApiPublicParamsUserid(c)
 
 	c.JSON(http.StatusOK, resp)
 }

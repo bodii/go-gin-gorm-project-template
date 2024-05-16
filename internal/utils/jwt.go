@@ -3,7 +3,6 @@ package utils
 import (
 	"errors"
 	"fmt"
-	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -30,7 +29,7 @@ type JwtService struct {
 
 func NewJwtGeneraleService() *JwtService {
 	return &JwtService{
-		secretKey: getSecretKey(),
+		secretKey: GetEnvSecretValue(),
 		issure:    "haoyunpan-api2",
 		subject:   "app",
 		id:        RandStr(32, 5),
@@ -40,17 +39,8 @@ func NewJwtGeneraleService() *JwtService {
 
 func NewJwtService() *JwtService {
 	return &JwtService{
-		secretKey: getSecretKey(),
+		secretKey: GetEnvSecretValue(),
 	}
-}
-
-func getSecretKey() string {
-	secret := os.Getenv("secret")
-	if secret == "" {
-		secret = "secret"
-	}
-
-	return secret
 }
 
 // 登录时生成
