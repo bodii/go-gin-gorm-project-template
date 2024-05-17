@@ -1,9 +1,9 @@
-# Project go-gin-gorm-project-template
+# Guide for project
 
 template for golang project
 
 ## Getting Started
-template for golang project
+This is a golang project template realized by using gin web framework and gorm database model, which can be used in online version.
 
 ### 1.step: Clone project
 ```bash
@@ -12,8 +12,11 @@ git clone https://github.com/bodii/go-gin-gorm-project-template
 
 ### 2.step: Init project
 ```bash
-bash ./init_project.sh
+bash ./init_project.sh -h
 ```
+
+## 3.set the daemon on the release version
+[daemon setting guide](daemon.md)
 
 ----
 #### MakeFile

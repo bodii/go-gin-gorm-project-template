@@ -72,12 +72,18 @@ function initConifgFile() {
     done
 }
 
+function createDir() {
+    mkdir -p files/upload files/assets logs
+}
+
 # 执行最终方法
 function run() {
     doParse "$@"
     echo "Generating $PROJECT_NAME ..."
 
     projectInit
+
+    createDir
 }
 
 # 执行
