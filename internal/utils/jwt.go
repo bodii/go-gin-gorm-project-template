@@ -3,6 +3,7 @@ package utils
 import (
 	"errors"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
@@ -30,7 +31,7 @@ type JwtService struct {
 func NewJwtGeneraleService() *JwtService {
 	return &JwtService{
 		secretKey: GetEnvSecretValue(),
-		issure:    "haoyunpan-api2",
+		issure:    os.Getenv("APP_NAME"),
 		subject:   "app",
 		id:        RandStr(32, 5),
 		audience:  jwt.ClaimStrings{"Android", "IOS"},
