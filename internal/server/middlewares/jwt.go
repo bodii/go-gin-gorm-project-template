@@ -16,12 +16,18 @@ func JWTAuth() gin.HandlerFunc {
 			return
 		}
 		// 校验token，只要出错直接拒绝请求
-		_, err := utils.NewJwtService().ValidateToken(auth)
-		if err != nil {
+		token, err := utils.NewJwtService().ValidateWithClaimsToken(auth)
+		if err != nil || !token.Valid {
 			c.Abort()
 			utils.ErrorJSON(c, http.StatusUnauthorized, "权限登录失败")
 			return
 		}
+
+		// 解析userid
+		userid := token.Claims.(*utils.JWTAuthCustomClaims).Userid
+
+		// 将参数放入上下文中
+		c.Set("userid", userid)
 
 		c.Next()
 	}

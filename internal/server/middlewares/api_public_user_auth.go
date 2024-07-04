@@ -176,7 +176,6 @@ func (ua *apiPublicParamsT) unToken(token string) error {
 }
 
 // 验证api公共参数中间件方法
-// http -v :8080/api/v1/ai/chat x-app-version:125  x-app-platform:android x-app-brand:OPPO x-app-device:PCLM10 x-app-accountId:32092 x-app-sign:86b1aff7a887b643778b5ef3763df293
 func UserAuth() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		ua := &apiPublicParamsT{

@@ -1,10 +1,8 @@
 package server
 
 import (
-	"fmt"
 	"net/http"
 	"os"
-	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -37,15 +35,9 @@ func NewServer() *http.Server {
 
 	app.Use(gin.Recovery())
 
-	// use jwt auth middleware
-	app.Use(middlewares.JWTAuth())
-
-	// get port in env file
-	port, _ := strconv.Atoi(os.Getenv("PORT"))
-
 	// Declare Server config
 	server := &http.Server{
-		Addr:         fmt.Sprintf(":%d", port),
+		Addr:         ":" + os.Getenv("PORT"),
 		Handler:      routes.RegisterRoutes(app),
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,

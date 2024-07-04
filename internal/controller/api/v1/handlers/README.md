@@ -51,4 +51,23 @@ func (u *userController) Login(c *gin.Context) {
 
 	utils.OkJSON(c, dbUser)
 }
+
+func (u *userController) CheckUser(c *gin.Context) {
+
+	// see: internal/server/middlewares/jwt.go 
+	// context set userid
+	userid := c.Get("userid").(uint64);
+	if userid < 1 {
+		utils.ErrorJSON(c, http.StatusUnauthorized, err.Error())
+		return
+	}
+
+	UserLoginRes, err := u.service.CheckUser(models.CheckUser{Userid: userid})
+	if err != nil {
+		utils.ErrorJSON(c, http.StatusUnauthorized, err.Error())
+		return
+	}
+
+	utils.OkJSON(c, UserLoginRes)
+}
 ```

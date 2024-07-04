@@ -12,7 +12,7 @@ import (
 
 // User -> User struct to save user on database
 type User struct {
-	Userid      int64   `gorm:"column:userid" json:"userid" form:"userid"`
+	Userid      uint64   `gorm:"column:userid" json:"userid" form:"userid"`
 	Username    string  `gorm:"column:username" json:"username" form:"username"`
 	Password    string  `gorm:"column:password" json:"password" form:"password"`
 	Nickname    string  `gorm:"column:nickname" json:"nickname" form:"nickname"`
@@ -26,7 +26,7 @@ func (user *User) TableName() string {
 }
 
 type CheckUser struct {
-	Userid string `form:"userid" binding:"required"`
+	Userid uint64 `form:"userid" binding:"required"`
 }
 
 // UserLogin -> Request Binding for User Login
@@ -36,7 +36,7 @@ type UserLogin struct {
 }
 
 type UserLoginResponse struct {
-	Userid    int64   `gorm:"column:userid" json:"userid" form:"userid"`
+	Userid    uint64   `gorm:"column:userid" json:"userid" form:"userid"`
 	Nickname  string  `gorm:"column:nickname" json:"nickname" form:"nickname"`
 	Token     string  `json:"token" form:"token"` // jwt token
 }
