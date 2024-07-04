@@ -46,6 +46,7 @@ func (example *exampleController) HelloWorld(c *gin.Context) {
 	// 禁止外部访问
 	if c.ClientIP() != c.RemoteIP() {
 		c.JSON(http.StatusNotFound, nil)
+		return
 	}
 
 	e.Log.Info("Hello World")
@@ -56,7 +57,9 @@ func (example *exampleController) HelloWorld(c *gin.Context) {
 	resp := make(map[string]string)
 	resp["message"] = "Hello World"
 
+	// [如果使用apiPublicAuth middlewares]
 	// 将api公共参数写入到响应体
+	/*
 	apiPublicParams := utils.GetApiPublicParamsAllMap(c)
 	for k, v := range apiPublicParams {
 		resp[k] = v
@@ -64,6 +67,7 @@ func (example *exampleController) HelloWorld(c *gin.Context) {
 
 	// 获取api公共参数的userid
 	// userid := utils.GetApiPublicParamsUserid(c)
+	*/
 
 	c.JSON(http.StatusOK, resp)
 }
@@ -72,6 +76,7 @@ func (example *exampleController) Health(c *gin.Context) {
 	// 禁止外部访问
 	if c.ClientIP() != c.RemoteIP() {
 		c.JSON(http.StatusNotFound, nil)
+		return
 	}
 
 	c.JSON(http.StatusOK, map[string]string{"health": "ok"})
