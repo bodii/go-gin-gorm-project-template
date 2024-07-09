@@ -44,6 +44,8 @@ type apiPublicParamsT struct {
 	Device string `form:"device" json:"device,omitempty"`
 	// brand info 设备品牌信息
 	Brand string `form:"brand" json:"brand,omitempty"`
+	// os version info 系统版本信息
+	Os string `form:"os" json:"os,omitempty"`
 	// user account id
 	AccountId string `form:"accountId" json:"accountId" binding:"required"`
 	// sign
@@ -70,6 +72,7 @@ func (ua *apiPublicParamsT) toEncodeMap() map[string]string {
 		"key":        ua.Key,
 		"keySign":    ua.KeySign,
 		"version":    ua.Version,
+		"os":         ua.Os,
 		"platform":   ua.Platform}
 }
 
@@ -169,6 +172,8 @@ func (ua *apiPublicParamsT) unToken(token string) error {
 			ua.Device = keyValList[1]
 		case "brand":
 			ua.Brand = keyValList[1]
+		case "os":
+			ua.Os = keyValList[1]
 		}
 	}
 
